@@ -5,140 +5,55 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <style>
-        #parent {
-    width: 414px;
-    height: 736px;
-}
-#face {
-    margin-left: 20px;
-}
-
-#olive{
-    margin: auto;
-    background-color: #e4622d;
-    height: 475px;
-    width: 340px;
-    border-top-left-radius: 250px 325px;
-    border-top-right-radius: 250px 325px;
-    border-bottom-right-radius: 200px 275px;
-    border-bottom-left-radius: 200px 275px;
-    border-top: 5px solid black;
-    border-bottom: 5px solid black;
-    border-left: 10px solid black;
-    border-right: 2px solid black;
-}
-
-#olive.wobble-right{
-    transition        : 1s linear;
-    -webkit-transform : rotate(10deg);
-    transform : rotate(10deg);
-}
-
-#olive.wobble-left{
-    transition        : 1s linear;
-    -webkit-transform : rotate(-10deg);
-    transform : rotate(-10deg);
-}
-
-#pit {
-    width: 165px;
-    height: 113px;
-    margin-left: 69px;
-    margin-top: 30px;
-    border-radius: 400px / 300px;
-    background-color: #D23641;
-    border-top: 2px solid black;
-    border-bottom: 2px solid black;
-    border-left: 2px solid black;
-    border-right: 2px solid black
-}
-
-#eyes {
-    margin-top: 20px;
-    width:400px;
-}
-
-#eye-l {
-    display: inline-block;
-  height: 100px;
-  width: 100px;
-  background-color: black;
-  border-radius: 100%;
-  margin-left: 41px;
-}
-#eye-r {
-    display: inline-block;
-  height: 100px;
-  width: 100px;
-  background-color: black;
-  border-radius: 100%;
-  margin-left: 20px;
-}
-
-.inner-ring {
-    height: 80px;
-    width: 80px;
-    display: inline-block;
-    margin-top: 6px;
-    margin-left: 6px;
-    border-radius: 100%;
-    border: solid white 4px;
-}
-
-.inner-shine {
-    height: 30px;
-    width: 30px;
-    display: inline-block;
-    margin-top: 12px;
-    margin-left: 55px;
-    border-radius: 100%;
-    background-color: white;
-}
-
-#mouth {
-  background-color: black;
-  margin-left: 91px;
-  margin-top: 39px;
-  border-bottom-left-radius: 100px;
-  border-bottom-right-radius: 100px;
-  width: 112px;
-  height: 29px;
-}
+        .background {
+            background-image: url('https://i.ibb.co/tXDSCqt/maxresdefault.jpg');
+        }
+        .rob-pic {
+            height: 420px;
+        }
+        .face-left {
+            transform: scaleX(-1);
+        } 
+    </style>
     </style>
 </head>
-<body>
-    <div id="olive">
-        <div id="face">
-            <!--<div id="pit"></div>-->
-            <div id="eyes">
-                <div id="eye-l">
-                    <div class="inner-shine"></div>
-                </div>
-                <div id="eye-r">
-                    <div class="inner-shine"></div>
-                </div>
-            </div>
-            <div class="blush">
+<body class="background">
+    <img class="rob-pic" src="https://i.ibb.co/Wy457kz/rob.png" alt="" srcset="">
+    
 
-            </div>
-            <div id="mouth"></div>
-            </div>
-        </div>
-    </div>
+    <iframe width="1" height="1" src="https://www.youtube.com/embed/ujspBYQXSdY&autoplay=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </body>
+
+<div data-video="ujspBYQXSdY"  
+data-autoplay="1"         
+data-loop="1"             
+id="youtube-audio">
+</div>
+<script src="https://www.youtube.com/iframe_api"></script>
+<script src="https://cdn.rawgit.com/labnol/files/master/yt.js"></script>
+
 <script
   src="https://code.jquery.com/jquery-3.2.1.min.js"
   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
   crossorigin="anonymous"></script>
 <script>
-setInterval(function() {
-    if ($('#olive').hasClass('wobble-left')) {
-        $('#olive').addClass('wobble-right');
-        $('#olive').removeClass('wobble-left');
-    } else {
-        $('#olive').addClass('wobble-left');
-        $('#olive').removeClass('wobble-right');
+    let direction = 0;
+ setInterval(() => {
+    let margin = parseInt($('.rob-pic').css('margin-left'));
+    if(margin > 800) {
+        direction = 1;
+        $('.rob-pic').addClass('face-left');
     }
-}, 1000);
+    if(margin < 0) {
+        direction = 0;
+        $('.rob-pic').removeClass('face-left');
+    }
+    if(direction === 0) {
+        margin += 3;
+    } else {
+        margin -= 3;
+    }
+    $('.rob-pic').css('margin-left', margin + 'px');
+}, 10);
 </script>
 </html>
